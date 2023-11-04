@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Objeto_Vida/V_Costado.png" type="Texture" id=1]
+[ext_resource path="res://Objeto_Vida/V_RotaD.png" type="Texture" id=2]
+[ext_resource path="res://Objeto_Vida/V_Frente.png" type="Texture" id=3]
+[ext_resource path="res://Objeto_Vida/_RoraI.png" type="Texture" id=4]
+[ext_resource path="res://Vidas.gd" type="Script" id=5]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Vidas_Ocultas" type="Area"]
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 2.6, 0, 0, 0, -6.55671e-08, -2, 0, 1.5, -8.74228e-08, 0.11, 0, 0.775 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.233122, 0, 0 )
+frames = SubResource( 2 )
+frame = 3
+playing = true
+
+[connection signal="body_entered" from="." to="." method="_on_Vidas_Ocultas_body_entered"]
